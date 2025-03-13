@@ -1,15 +1,16 @@
   {% load static %}
-  
+  {% load chunks %}
 
     <!-- Featured Products -->
 
     <div class="small-container">
         <h2 class="title">Featured Products</h2>
+        {% for product_chunks in featured_products|chunks:4 %}
         <div class="row">
-            {% for product in featured_products %}
+            {% for product in product_chunks %}
             <div class="col-4">
-                <a href="product_details.html"><img src="{% static 'images/product-1.jpg' %}"></a>
-                <h4>Red Printed T-Shirt</h4>
+                <a href="{% url 'detail_product' product.id %}"><img src="{{ product.image.url }}"></a>
+                <h4>{{ product.title }}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -17,19 +18,21 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$50.00</p>
+                <p>{{ product.price }}</p>
             </div>
             {% endfor %}
         </div>
+        {% endfor %}
 
         <!-- Latest Products -->
 
         <h2 class="title">Latest Products</h2>
+        {% for product_chunks in latest_products|chunks:4 %}
         <div class="row">
-            {% for product in latest_products %}
+            {% for product in product_chunks %}
             <div class="col-4">
-                <img src="{% static 'images/product-5.jpg' %}">
-                <h4>Red Printed T-Shirt</h4>
+                <a href="{% url 'detail_product' product.id %}"><img src="{{ product.image.url }}"></a>
+                <h4>{{ product.title }}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -37,9 +40,9 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$50.00</p>
+                <p>{{ product.price }}</p>
             </div>
             {% endfor %}
-
         </div>
+        {% endfor %}
     </div>
