@@ -16,3 +16,11 @@ __pycache__
 # Package files
 *.jar
 
+# Ignore environment file
+.env
+
+# Ignore database connection script
+mydb.py
+
+# Keep migrations folder but ignore '*.pyc' inside
+migrations/*.pyc
